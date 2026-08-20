@@ -484,10 +484,13 @@ a {
 .education-card{
  position: relative;
   overflow: hidden; /* Cuts off the half of the logo that hangs outside the card */
-  width: min(100%, 420px);
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 420px;
   border: 1px solid #cbd5e1;
   border-radius: var(--radius);
-  padding: 24px;
+  padding-block: clamp(1.25rem, 5vh, 2.5rem);
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
   min-height: 220px;
   background-color: #ffffff; /* Card background color */
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
@@ -842,10 +845,10 @@ a {
     inset: 0;
     z-index: 1;
     display: flex;
-    align-items: left;
+    align-items: top;
     justify-content: left;
     width: 100vw;
-    height: 100vh;
+    height: 10vh;
     min-height: 100dvh;
     padding: 6rem 2rem 2rem;
     background: var(--background);
