@@ -125,7 +125,8 @@ a {
 .certifications-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2rem;
+  column-gap: 2.5rem;
+  row-gap: 2rem;
   margin-inline: 0;
 }
 
@@ -193,8 +194,9 @@ a {
   padding: 1.5rem;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: var(--card);
+  background-color: #ffffff;
   height: 100%;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
   transition: transform 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
 }
 
@@ -224,7 +226,17 @@ a {
 .cert-card:hover::before {
   opacity: 1;
 }
-
+.educ-icon{
+   display: grid;
+  place-items: center;
+  flex-shrink: 0; /* Prevents the icon from squeezing on small screens */
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, darkblue 12%, transparent);
+  color: darkblue;
+  font-size: 1.5rem;
+}
 /* Icon Container */
 .cert-icon {
   display: grid;
@@ -469,6 +481,43 @@ a {
   border-radius: var(--radius);
 }
 
+.education-card{
+ position: relative;
+  overflow: hidden; /* Cuts off the half of the logo that hangs outside the card */
+  width: min(100%, 420px);
+  border: 1px solid #cbd5e1;
+  border-radius: var(--radius);
+  padding: 24px;
+  min-height: 220px;
+  background-color: #ffffff; /* Card background color */
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  z-index: 1; /* Ensures text stays above the pseudo-element */
+}
+.education-card::after{
+  content: "";
+  position: absolute;
+  top: 50%; 
+  transform: translateY(-50%); 
+  right: -10%; 
+  
+  width: 200px; /* Controls how much of the card it covers */
+  height: 250px;
+  
+  background-image: url('uslt.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+  /* The blur and transparency */
+  filter: blur(1px);
+  opacity: 0.5; 
+  z-index: -1; /* Pushes the logo behind the card content */
+}
+.img-fluid{
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 .image-frame img {
   aspect-ratio: 4 / 5;
   width: 100%;
@@ -592,6 +641,7 @@ a {
   border-radius: var(--radius);
   background: var(--card);
   overflow: hidden;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
 }
 
 .project-image {
@@ -777,35 +827,88 @@ a {
 }
 
 @media (max-width: 991px) {
+  body.mobile-nav-open {
+    overflow: hidden;
+  }
+
   .navbar-toggler {
     display: block;
+    position: relative;
+    z-index: 2;
   }
 
   .navbar-collapse {
-    position: absolute;
-    top: 100%;
-    right: 1.5rem;
-    left: 1.5rem;
-    display: none;
-    padding: 1rem;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100dvh;
+    padding: 6rem 2rem 2rem;
     background: var(--background);
-    box-shadow: 0 1rem 2rem color-mix(in srgb, var(--primary) 12%, transparent);
+    overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(100%);
+    transition: opacity 300ms ease, transform 400ms ease, visibility 300ms ease;
+    visibility: hidden;
   }
 
   .navbar-collapse.show {
-    display: block;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+    visibility: visible;
   }
 
   .navbar-nav {
-    align-items: stretch;
+    align-items: center;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 1.25rem;
+    width: auto;
+    text-align: center;
+  }
+
+  .navbar-nav .nav-item {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: opacity 300ms ease, transform 300ms ease;
+  }
+
+  .navbar-collapse.show .nav-item {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .navbar-collapse.show .nav-item:nth-child(1) {
+    transition-delay: 100ms;
+  }
+
+  .navbar-collapse.show .nav-item:nth-child(2) {
+    transition-delay: 150ms;
+  }
+
+  .navbar-collapse.show .nav-item:nth-child(3) {
+    transition-delay: 200ms;
+  }
+
+  .navbar-collapse.show .nav-item:nth-child(4) {
+    transition-delay: 250ms;
+  }
+
+  .navbar-nav .nav-link {
+    display: block;
+    font-size: clamp(1.6rem, 7vw, 2.4rem);
+    font-weight: 600;
+    line-height: 1.1;
   }
 
   .nav-cta {
     display: inline-block;
+    margin-top: 0.5rem;
     text-align: center;
   }
 }

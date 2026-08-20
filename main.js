@@ -32,6 +32,7 @@
     navToggle.addEventListener("click", () => {
       const isOpen = navCollapse.classList.toggle("show");
       navToggle.setAttribute("aria-expanded", String(isOpen));
+      document.body.classList.toggle("mobile-nav-open", isOpen);
     });
   }
 
@@ -73,6 +74,7 @@
         // Close mobile menu after click
         if (navCollapse && navCollapse.classList.contains("show")) {
           navCollapse.classList.remove("show");
+          document.body.classList.remove("mobile-nav-open");
           if (navToggle) navToggle.setAttribute("aria-expanded", "false");
         }
       }
