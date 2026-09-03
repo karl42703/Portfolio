@@ -444,7 +444,7 @@ a {
 }
 
 .btn-outline {
-  border-color: var(--border);
+  border-color: black;
   color: var(--primary);
 }
 
@@ -515,6 +515,21 @@ a {
   filter: blur(1px);
   opacity: 0.5; 
   z-index: -1; /* Pushes the logo behind the card content */
+}
+
+.certification-card{
+ position: relative;
+  
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 420px;
+  border: 1px solid #cbd5e1;
+  border-radius: var(--radius);
+  padding-block: clamp(1.25rem, 5vh, 2.5rem);
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+  min-height: 220px;
+  background-color: #ffffff; /* Card background color */
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
 }
 .img-fluid{
   max-width: 100%;
